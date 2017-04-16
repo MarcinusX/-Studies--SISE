@@ -19,7 +19,7 @@ public class Board {
     public Board(Board board, List<Action> actions) throws InvalidBoardOperationException {
         this.rows = board.getRows();
         this.columns = board.getColumns();
-        this.board = board.getBoard().clone();
+        this.board = cloneArray(board.getBoard());
         setEmptyIndexes();
         performActions(actions);
     }
@@ -39,6 +39,15 @@ public class Board {
             board[i] = Arrays.stream(lines[i + 1].split(" ")).mapToInt(Integer::parseInt).toArray();
         }
         setEmptyIndexes();
+    }
+
+    private int[][] cloneArray(int[][] src) {
+        int length = src.length;
+        int[][] target = new int[length][src[0].length];
+        for (int i = 0; i < length; i++) {
+            System.arraycopy(src[i], 0, target[i], 0, src[i].length);
+        }
+        return target;
     }
 
     public boolean isSolved() {

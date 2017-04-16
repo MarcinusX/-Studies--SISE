@@ -1,5 +1,4 @@
-import java.io.FileNotFoundException;
-import java.util.List;
+import java.io.IOException;
 
 /**
  * Created by szale_000 on 2017-04-14.
@@ -7,18 +6,21 @@ import java.util.List;
 public class Main {
 
     public static void main(String... args) {
-        System.out.println("Hello world");
+        String alogrithm = args[0];
+        String parameter = args[1];
+        String inputPath = args[2];
+        String solutionPath = args[3];
+        String statsPath = args[4];
         try {
-            Board board = new Board("4x4_01_00001.txt");
+            Board board = new Board(inputPath);
             System.out.println(board);
-            board.performAction(Action.RIGHT);
-            System.out.println(board);
-        } catch (FileNotFoundException | InvalidBoardOperationException e) {
+            DFS dfs = new DFS(board, parameter);
+            dfs.dsf();
+            dfs.printResults(solutionPath, statsPath);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private static void dsf(Board board, List<Action> actions) {
 
-    }
 }
