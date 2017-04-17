@@ -1,14 +1,13 @@
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Stack;
+import java.util.Queue;
 
 /**
- * Created by szale_000 on 2017-04-16.
+ * Created by szale_000 on 2017-04-17.
  */
-
-public class DFS implements PuzzleSolver {
+public class BFS implements PuzzleSolver {
 
     private List<Action> fetchOrder;
     private List<Action> dsfSolution;
@@ -21,12 +20,12 @@ public class DFS implements PuzzleSolver {
     public void solve(Board board, String params) {
         prepare(params);
 
-        Stack<List<Action>> stack = new Stack<>();
-        addActionsToStack(stack, new ArrayList<>(), null);
+        Queue<List<Action>> queue = new LinkedList<>();
+        addActionsToQueue(queue, new ArrayList<>(), null);
         List<Action> solution = null;
 
-        while (solution == null || stack.isEmpty()) {
-            List<Action> actions = stack.pop();
+        while (solution == null || queue.isEmpty()) {
+            List<Action> actions = queue.poll();
             visitedStates++;
             //System.out.println("level " + actions.size() + " trying: " + actions);
             try {
@@ -34,7 +33,7 @@ public class DFS implements PuzzleSolver {
                 if (tempBoard.isSolved()) {
                     solution = actions;
                 } else if (actions.size() < MAX_ALLOWED_LEVEL) {
-                    addActionsToStack(stack, actions, actions.get(actions.size() - 1).opposite());
+                    addActionsToQueue(queue, actions, actions.get(actions.size() - 1).opposite());
                 }
             } catch (InvalidBoardOperationException e) {
                 visitedStates--;
@@ -49,13 +48,13 @@ public class DFS implements PuzzleSolver {
         new Utils().printResults(solutionPath, statsPath, dsfSolution, visitedStates, maxLevel, time / Math.pow(10, 6));
     }
 
-    private void addActionsToStack(Stack<List<Action>> stack, List<Action> actionHistory, Action excludedAction) {
+    private void addActionsToQueue(Queue<List<Action>> queue, List<Action> actionHistory, Action excludedAction) {
         for (Action action : fetchOrder) {
             if (action != excludedAction) {
                 List<Action> actionsToFetch = new ArrayList<>(actionHistory);
                 actionsToFetch.add(action);
                 //System.out.println("adding "+actionsToFetch);
-                stack.push(actionsToFetch);
+                queue.add(actionsToFetch);
             }
         }
         if (actionHistory.size() + 1 > maxLevel) {
@@ -65,9 +64,7 @@ public class DFS implements PuzzleSolver {
 
     private void prepare(String fetchOrder) {
         this.fetchOrder = new Utils().parseBruteForceParameters(fetchOrder);
-        Collections.reverse(this.fetchOrder);
         visitedStates = 0;
         time = System.nanoTime();
     }
-
 }
