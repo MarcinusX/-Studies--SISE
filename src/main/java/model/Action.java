@@ -1,3 +1,5 @@
+package model;
+
 /**
  * Created by szale_000 on 2017-04-14.
  */

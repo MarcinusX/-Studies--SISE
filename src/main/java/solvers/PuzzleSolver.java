@@ -1,3 +1,7 @@
+package solvers;
+
+import model.Board;
+
 import java.io.IOException;
 
 /**

@@ -1,3 +1,5 @@
+package model;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -106,6 +108,30 @@ public class Board {
             string += "\n";
         }
         return string;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Board board1 = (Board) o;
+
+        if (rows != board1.rows) return false;
+        if (columns != board1.columns) return false;
+        if (emptyRowIndex != board1.emptyRowIndex) return false;
+        if (emptyColumnIndex != board1.emptyColumnIndex) return false;
+        return Arrays.deepEquals(board, board1.board);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = rows;
+        result = 31 * result + columns;
+        result = 31 * result + Arrays.deepHashCode(board);
+        result = 31 * result + emptyRowIndex;
+        result = 31 * result + emptyColumnIndex;
+        return result;
     }
 
     public int getRows() {

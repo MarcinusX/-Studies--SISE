@@ -1,3 +1,9 @@
+import model.Board;
+import solvers.AStar;
+import solvers.BFS;
+import solvers.DFS;
+import solvers.PuzzleSolver;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +20,7 @@ public class Main {
             strategies = new HashMap<>();
             strategies.put("dfs", new DFS());
             strategies.put("bfs", new BFS());
+            strategies.put("astr", new AStar());
         }
     }
 
