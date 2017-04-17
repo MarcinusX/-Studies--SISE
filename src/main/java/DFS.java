@@ -1,6 +1,4 @@
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -22,7 +20,8 @@ public class DFS {
 
     public DFS(Board board, String fetchOrder) {
         this.board = board;
-        this.fetchOrder = parseParameters(fetchOrder);
+        this.fetchOrder = new Utils().parseBruteForceParameters(fetchOrder);
+        Collections.reverse(this.fetchOrder);
     }
 
     public void dsf() {
@@ -66,40 +65,8 @@ public class DFS {
         }
     }
 
-    private List<Action> parseParameters(String params) {
-        List<Action> order = new ArrayList<>();
-        for (char symbol : params.toCharArray()) {
-            order.add(Action.fromString(String.valueOf(symbol)));
-        }
-        Collections.reverse(order);
-        return order;
-    }
-
     public void printResults(String solutionPath, String statsPath) throws IOException {
-        printSolution(solutionPath);
-        printStats(statsPath);
+        new Utils().printResults(solutionPath, statsPath, dsfSolution, visitedStates, maxLevel, time / Math.pow(10, 6));
     }
 
-    private void printStats(String statsPath) throws IOException {
-        PrintWriter pw = new PrintWriter(new FileWriter(statsPath));
-        int length = dsfSolution == null ? -1 : dsfSolution.size();
-        pw.println(length);
-        pw.println(visitedStates);
-        pw.println(maxLevel);
-        pw.println(time / Math.pow(10, 6));
-        pw.close();
-    }
-
-    private void printSolution(String solutionPath) throws IOException {
-        PrintWriter pw = new PrintWriter(new FileWriter(solutionPath));
-        if (dsfSolution == null) {
-            pw.print(-1);
-        } else {
-            pw.println(dsfSolution.size());
-            for (Action action : dsfSolution) {
-                pw.print(action);
-            }
-        }
-        pw.close();
-    }
 }
