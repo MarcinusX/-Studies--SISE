@@ -28,7 +28,7 @@ public class BFS implements PuzzleSolver {
         addActionsToQueue(queue, new ArrayList<>(), null);
         List<Action> solution = null;
 
-        while (solution == null || queue.isEmpty()) {
+        while (solution == null && !queue.isEmpty()) {
             List<Action> actions = queue.poll();
             //System.out.println("level " + actions.size() + " trying: " + actions);
             try {

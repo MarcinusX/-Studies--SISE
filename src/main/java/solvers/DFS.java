@@ -29,7 +29,8 @@ public class DFS implements PuzzleSolver {
         addActionsToStack(stack, new ArrayList<>(), null);
         List<Action> solution = null;
 
-        while (solution == null || stack.isEmpty()) {
+        while (solution == null && !stack.isEmpty()) {
+
             List<Action> actions = stack.pop();
             //System.out.println("level " + actions.size() + " trying: " + actions);
             try {
