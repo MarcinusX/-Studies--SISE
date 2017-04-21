@@ -18,8 +18,8 @@ public class DFS implements PuzzleSolver {
     private List<Action> puzzleSoltion;
     private double time = 0;
     private int maxLevel = 0;
-    private static final int MAX_ALLOWED_LEVEL = 20;
-    private HashSet<Board> visitedBoards = new HashSet<>();
+    private static final int MAX_ALLOWED_LEVEL = 18;
+    private HashMap<Board, Integer> visitedBoards = new HashMap<>();//Integer jest glebokoscia
 
     @Override
     public void solve(Board board, String params) {
@@ -34,8 +34,9 @@ public class DFS implements PuzzleSolver {
             //System.out.println("level " + actions.size() + " trying: " + actions);
             try {
                 Board tempBoard = new Board(board, actions);
-                if (!visitedBoards.contains(tempBoard)) {
-                    visitedBoards.add(tempBoard);
+                Integer size = visitedBoards.get(tempBoard);
+                if (size == null || size>actions.size()) {
+                    visitedBoards.put(tempBoard, actions.size());
                     if (tempBoard.isSolved()) {
                         solution = actions;
                     } else if (actions.size() < MAX_ALLOWED_LEVEL) {
