@@ -16,7 +16,7 @@ public class AStar implements PuzzleSolver {
     private double time = 0;
     private int maxLevel = 0;
     private HashSet<Board> visitedBoards = new HashSet<>();
-    private HashMap<List<Action>, Integer> options = new HashMap<>();
+    private HashMap<List<Action>, Integer> options = new HashMap<>();//Integer jest odległością
     private Heuristic heuristic;
 
     @Override
@@ -53,16 +53,13 @@ public class AStar implements PuzzleSolver {
     }
 
     private List<Action> getBestOption() {
-        int minDistance = -1;
-        List<Action> bestOption = null;
-        for (Map.Entry<List<Action>, Integer> entry : options.entrySet()) {
-            if (entry.getValue() < minDistance || minDistance == -1) {
-                bestOption = entry.getKey();
-                minDistance = entry.getValue();
-            }
-        }
-        options.remove(bestOption);
-        return bestOption;
+        Map.Entry<List<Action>, Integer> entry =
+                options.entrySet()
+                        .stream()
+                        .min(Comparator.comparingInt(Map.Entry::getValue))
+                        .get();
+        options.remove(entry.getKey());
+        return entry.getKey();
     }
 
     private void addNewOptions(Board sourceBoard, List<Action> actionHistory, Action excludedAction) {

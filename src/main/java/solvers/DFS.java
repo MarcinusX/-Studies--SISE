@@ -35,8 +35,8 @@ public class DFS implements PuzzleSolver {
             //System.out.println("level " + actions.size() + " trying: " + actions);
             try {
                 Board tempBoard = new Board(board, actions);
-                Integer size = visitedBoards.get(tempBoard);
-                if (size == null || size>actions.size()) {
+                Integer currentSize = visitedBoards.get(tempBoard);
+                if (currentSize == null || currentSize > actions.size()) {
                     visitedBoards.put(tempBoard, actions.size());
                     if (tempBoard.isSolved()) {
                         solution = actions;

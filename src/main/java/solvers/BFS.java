@@ -17,7 +17,6 @@ public class BFS implements PuzzleSolver {
     private List<Action> puzzleSoltion;
     private double time = 0;
     private int maxLevel = 0;
-    private static final int MAX_ALLOWED_LEVEL = 20;
     private HashSet<Board> visitedBoards = new HashSet<>();
 
     @Override
@@ -37,7 +36,7 @@ public class BFS implements PuzzleSolver {
                     visitedBoards.add(tempBoard);
                     if (tempBoard.isSolved()) {
                         solution = actions;
-                    } else if (actions.size() < MAX_ALLOWED_LEVEL) {
+                    } else {
                         addActionsToQueue(queue, actions, actions.get(actions.size() - 1).opposite());
                     }
                 }

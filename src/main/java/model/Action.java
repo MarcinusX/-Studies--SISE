@@ -13,7 +13,7 @@ public enum Action {
     private int rowFinder;
     private int columnFinder;
 
-    private Action(String s, int rowFinder, int columnFinder) {
+    Action(String s, int rowFinder, int columnFinder) {
         value = s;
         this.rowFinder = rowFinder;
         this.columnFinder = columnFinder;

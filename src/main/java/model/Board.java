@@ -66,7 +66,7 @@ public class Board {
     public boolean isFieldOk(int row, int column) {
         int expectedNumber = row * columns + column + 1;
         int maxNumber = rows * columns;
-        return board[row][column] == expectedNumber % maxNumber;
+        return board[row][column] == expectedNumber % maxNumber; //ostatnie pole powinno byc 0, wiec dzielimy modulo
     }
 
     public void performAction(Action action) throws InvalidBoardOperationException {
