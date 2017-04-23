@@ -25,7 +25,7 @@ public class Utils {
         pw.println(length);
         pw.println(visitedStates);
         pw.println(maxLevel);
-        pw.println(time);
+        pw.format("%.3f", time);
         pw.close();
     }
 
