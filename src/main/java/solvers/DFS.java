@@ -18,7 +18,7 @@ public class DFS implements PuzzleSolver {
     private List<Action> puzzleSoltion;
     private double time = 0;
     private int maxLevel = 0;
-    private static final int MAX_ALLOWED_LEVEL = 18;
+    private static final int MAX_ALLOWED_LEVEL = 20;
     private HashMap<Board, Integer> visitedBoards = new HashMap<>();//Integer jest glebokoscia
 
     @Override
