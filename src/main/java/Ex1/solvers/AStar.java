@@ -1,9 +1,9 @@
-package solvers;
+package Ex1.solvers;
 
-import model.Action;
-import model.Board;
-import model.InvalidBoardOperationException;
-import util.Utils;
+import Ex1.model.Action;
+import Ex1.model.Board;
+import Ex1.model.InvalidBoardOperationException;
+import Ex1.util.Utils;
 
 import java.io.IOException;
 import java.util.*;

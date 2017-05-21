@@ -1,6 +1,6 @@
-package solvers;
+package Ex1.solvers;
 
-import model.Board;
+import Ex1.model.Board;
 
 /**
  * Created by szale_000 on 2017-04-17.

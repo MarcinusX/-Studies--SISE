@@ -1,6 +1,6 @@
-package util;
+package Ex1.util;
 
-import model.Action;
+import Ex1.model.Action;
 
 import java.io.FileWriter;
 import java.io.IOException;

@@ -1,8 +1,10 @@
-import model.Board;
-import solvers.AStar;
-import solvers.BFS;
-import solvers.DFS;
-import solvers.PuzzleSolver;
+package Ex1;
+
+import Ex1.model.Board;
+import Ex1.solvers.AStar;
+import Ex1.solvers.BFS;
+import Ex1.solvers.DFS;
+import Ex1.solvers.PuzzleSolver;
 
 import java.io.IOException;
 import java.util.HashMap;
