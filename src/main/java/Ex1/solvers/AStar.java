@@ -28,7 +28,7 @@ public class AStar implements PuzzleSolver {
 
         while (solution == null && !options.isEmpty()) {
             List<Action> actions = getBestOption();
-            System.out.println("level " + actions.size() + " trying: " + actions);
+            //System.out.println("level " + actions.size() + " trying: " + actions);
             try {
                 Board tempBoard = new Board(board, actions);
                 if (!visitedBoards.contains(tempBoard)) {
@@ -72,7 +72,7 @@ public class AStar implements PuzzleSolver {
                     if (!visitedBoards.contains(boardToAdd)) {
                         int distance = heuristic.calculateDistance(boardToAdd, actionsToFetch.size());
                         options.put(actionsToFetch, distance);
-                        System.out.println("adding " + actionsToFetch + "distance: " + distance);
+                        //System.out.println("adding " + actionsToFetch + "distance: " + distance);
                     }
                 } catch (InvalidBoardOperationException e) {
                     //e.printStackTrace();

@@ -35,7 +35,7 @@ public class Main {
         PuzzleSolver puzzleSolver = SolverStrategyFactory.strategies.get(algorithm);
         try {
             Board board = new Board(inputPath);
-            System.out.println(board);
+            //System.out.println(board);
             puzzleSolver.solve(board, parameter);
             puzzleSolver.printResults(solutionPath, statsPath);
         } catch (IOException e) {

@@ -15,10 +15,10 @@ import java.util.*;
 public class DFS implements PuzzleSolver {
 
     private List<Action> fetchOrder;
-    private List<Action> puzzleSoltion;
+    private List<Action> puzzleSolution;
     private double time = 0;
     private int maxLevel = 0;
-    private static final int MAX_ALLOWED_LEVEL = 18;
+    private static final int MAX_ALLOWED_LEVEL = 20;
     private HashMap<Board, Integer> visitedBoards = new HashMap<>();//Integer jest glebokoscia
 
     @Override
@@ -49,12 +49,12 @@ public class DFS implements PuzzleSolver {
             }
         }
         time = System.nanoTime() - time;
-        puzzleSoltion = solution;
+        puzzleSolution = solution;
     }
 
     @Override
     public void printResults(String solutionPath, String statsPath) throws IOException {
-        new Utils().printResults(solutionPath, statsPath, puzzleSoltion, visitedBoards.size(), maxLevel, time / Math.pow(10, 6));
+        new Utils().printResults(solutionPath, statsPath, puzzleSolution, visitedBoards.size(), maxLevel, time / Math.pow(10, 6));
     }
 
     private void addActionsToStack(Stack<List<Action>> stack, List<Action> actionHistory, Action excludedAction) {
