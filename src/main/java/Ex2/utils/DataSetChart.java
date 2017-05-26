@@ -25,8 +25,8 @@ public class DataSetChart {
 
     public DataSetChart(int numLabels) {
         series = new XYSeries[numLabels];
-        series[0] = new XYSeries("Punkty wejściowe");
-        series[1] = new XYSeries("Neurony");
+        series[0] = new XYSeries("Dane testowe");
+        series[1] = new XYSeries("Aproksymacja");
     }
 
     public void addEntries(int label, Matrix matrix) {
@@ -53,7 +53,7 @@ public class DataSetChart {
 
         // Generate the graph
         chart = ChartFactory.createScatterPlot(
-                "Punkty", "X", "Y", dataset,
+                "Punkty", "Liczba", "Pierwiastek", dataset,
                 PlotOrientation.VERTICAL, true, true, false);
 
         XYPlot xyPlot = chart.getXYPlot();
@@ -70,7 +70,7 @@ public class DataSetChart {
         renderer.setSeriesPaint(1, Color.red);
 
         try {
-            ChartUtilities.saveChartAsJPEG(new File(filename), chart, 1000, 800);
+            ChartUtilities.saveChartAsJPEG(new File(filename), chart, 800, 600);
         } catch (IOException e) {
             System.err.println("Problem occurred creating chart.");
         }

@@ -21,10 +21,10 @@ public class Approximation {
             Matrix[] matrices = new FileUtils().loadDataFromSingleFileSupervised("input.txt");
             ErrorChart errorChart = new ErrorChart();
 
-            NeuralNetwork nn = new NeuralNetwork(matrices[0].columns(), matrices[1].columns(), true,
-                    new int[]{5}, new LinearActivator(), 0.00001, 0.9);
+            NeuralNetwork nn = new NeuralNetwork(matrices[0].columns(), matrices[1].columns(), false,
+                    new int[]{30}, new LinearActivator(), 0.00001, 0.9);
 
-            int iterations = 10000;
+            int iterations = 1000;
             XYSeries errorSeries = nn.train(matrices[0], matrices[1], iterations, 0.01);
             errorChart.addSeries(errorSeries);
 

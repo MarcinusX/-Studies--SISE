@@ -55,7 +55,7 @@ public class NeuralNetwork {
     public XYSeries train(Matrix inputMatrix, Matrix expectedResults, int maxIterations, double desiredError) {
         int numExamples = inputMatrix.rows();
         inputLayer.setInput(inputMatrix);
-        XYSeries series = new XYSeries("Seria");
+        XYSeries series = new XYSeries("Błąd średniokwadratowy");
         int iteration = 0;
         double error;
         do {
@@ -67,6 +67,7 @@ public class NeuralNetwork {
             iteration++;
             error = outputLayer.cost(expectedResults, numExamples);
             series.add(iteration, error);
+            System.out.println(error);
         }
         while (iteration < maxIterations && error > desiredError);
 
